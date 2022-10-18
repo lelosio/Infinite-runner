@@ -4,38 +4,61 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
-    [SerializeField]
+    private int i;
 
-    public float JumpPower;
-    public float movespeed;
-    public bool isGrounded;
-    public Vector3 direction;
+    public float jumpForce;
+    public float moveSpeed;
+    public float forwardSpeed;
+    public Rigidbody rb;
+    public LayerMask groundMask;
 
-    [SerializeField]
-    private Rigidbody rb;
+    private bool isGrounded;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-
     }
 
-    // Update is called once per frame
-    private void Update()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            {
-            rb.AddForce(Vector3.up * JumpPower, ForceMode.VelocityChange);
-            }
-
-        if(Input.GetKey(KeyCode.D))
+        if (collision.collider.CompareTag("Obstacle"))
         {
-            transform.position += direction *movespeed * Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += direction * -movespeed * Time.deltaTime;
+            transform.position = Vector3.zero;
+            i =+ 0;
         }
     }
+
+    public void GroundCheck()
+    {
+        isGrounded = (Physics.Raycast(transform.position, Vector3.down, 2.2f, groundMask));
+    }
+
+    public void FixedUpdate()
+    {
+        transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
+
+        GroundCheck();
+
+        if (Input.GetKey(KeyCode.A) && i == 0 | i == 1)
+        {
+            --i;
+            transform.position = Vector3.left * moveSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.D) && i == 0 | i == -1)
+        {
+            ++i;
+            transform.position = Vector3.right * moveSpeed;
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
+    }
+
+
 }
