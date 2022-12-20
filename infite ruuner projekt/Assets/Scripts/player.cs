@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class player : MonoBehaviour
 {
+    bool alive =true;
     private int i;
     private int ii;
 
@@ -18,6 +21,7 @@ public class player : MonoBehaviour
 
     void Start()
     {
+        if (!alive) return;
         distToGround = GetComponent<Collider>().bounds.extents.y;
     }
 
@@ -45,6 +49,7 @@ public class player : MonoBehaviour
 
     public void Update()
     {
+        if (alive == false) return;
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             if (ii != 2)
@@ -74,5 +79,17 @@ public class player : MonoBehaviour
         }
     }
 
-
+    public void Die ()
+    {
+        if(alive)
+        {
+            alive = false;
+            StartCoroutine(Reset());
+        }
+     }
+    private IEnumerator Reset()
+    {
+        yield return new WaitForSecondsRealtime(0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
