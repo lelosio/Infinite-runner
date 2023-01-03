@@ -29,7 +29,7 @@ public class GroundTile : MonoBehaviour
         int coinIndex = obstacleSpawnIndex - 1;
         if(coinIndex < 0)
         {
-            coinIndex += 5;
+            coinIndex += 2;
             if(coinIndex >= obstacleSpawnPoints.Length)
             {
                 coinIndex = obstacleSpawnPoints.Length - 1;
