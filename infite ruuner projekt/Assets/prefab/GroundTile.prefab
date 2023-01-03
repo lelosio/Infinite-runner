@@ -156,7 +156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b698f0a1476b6a4cb177dedcc0c3ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleSpawnPoints:
+  - {fileID: 3509179655737599022}
+  - {fileID: 8088021533945566086}
+  - {fileID: 4868526474320102879}
   obstaclePrefab: {fileID: 6838727352247774164, guid: 36abaaccdd48b27469ea3cf37aae2649, type: 3}
+  coinPrefab: {fileID: 2461742928009826727, guid: dbfc2d77e89455745ba8f2ea410eb101, type: 3}
 --- !u!1 &4800929277905328933
 GameObject:
   m_ObjectHideFlags: 0

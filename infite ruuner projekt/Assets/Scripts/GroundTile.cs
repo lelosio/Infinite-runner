@@ -3,7 +3,9 @@ using UnityEngine;
 public class GroundTile : MonoBehaviour
 {
     GroundSpawner groundSpawner;
-    private void Start()
+    [SerializeField]
+    private Transform[] obstacleSpawnPoints;
+    public void Start()
 {
         groundSpawner = GameObject.FindObjectOfType<GroundSpawner>();
         SpawnObstacle();
@@ -22,11 +24,55 @@ public class GroundTile : MonoBehaviour
 
     void SpawnObstacle()
     {
-        int obstacleSpwantIndex = Random.Range(2, 5);
-        Transform spwanPoint = transform.GetChild(obstacleSpwantIndex).transform;
+        int obstacleSpawnIndex = Random.Range(0, obstacleSpawnPoints.Length);
 
-        Instantiate(obstaclePrefab, spwanPoint.position, Quaternion.identity, transform);
+        int coinIndex = obstacleSpawnIndex - 1;
+        if(coinIndex < 0)
+        {
+            coinIndex += 5;
+            if(coinIndex >= obstacleSpawnPoints.Length)
+            {
+                coinIndex = obstacleSpawnPoints.Length - 1;
+            }
+        }
+
+        Transform spawnPoint = obstacleSpawnPoints[obstacleSpawnIndex].transform;
+
+        Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
+        SpawnCoins(coinIndex);
+
     }
 
+
+    public GameObject coinPrefab;
+    void SpawnCoins(int coinSpawnIndex)
+    {
+        Transform spawnPoint = obstacleSpawnPoints[coinSpawnIndex].transform;
+
+        Instantiate(coinPrefab, spawnPoint.position, Quaternion.identity, transform);
+        //int coinsToSpawn = 0;
+        //for (int i = 0; i < coinsToSpawn; i++)
+        //{
+        //    GameObject temp = Instantiate(coinPrefab);
+        //    temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+        //}
+    }
+
+    Vector3 GetRandomPointInCollider (Collider collider)
+    {
+        Vector3 point = new Vector3(
+          Random.Range(collider.bounds.min.x, collider.bounds.max.x),
+          Random.Range(collider.bounds.min.x, collider.bounds.max.y),
+          Random.Range(collider.bounds.min.x, collider.bounds.max.z)
+          );
+          if (point != collider.ClosestPoint(point))
+        {
+            point = GetRandomPointInCollider(collider);
+
+        }
+        point.y = 1;
+        return point;
+        
+    }
 }
  
