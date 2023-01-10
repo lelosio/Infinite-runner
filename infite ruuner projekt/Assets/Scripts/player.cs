@@ -77,6 +77,8 @@ public class player : MonoBehaviour
                 transform.position += Vector3.right * moveSpeed;
             }
         }
+
+        GameManager.inst.SetDistanceScore(transform.position.z);
     }
 
     public void Die ()

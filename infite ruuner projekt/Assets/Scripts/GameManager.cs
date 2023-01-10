@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,9 @@ public class GameManager : MonoBehaviour
     public int score;
     public static GameManager inst;
 
-    public Text scoreText;
+    public TextMeshProUGUI scoreText, distanceScore;
+
+
 
     public void IncrementScore()
     {
@@ -30,5 +33,9 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+    public void SetDistanceScore(float zpos)
+    {
+        distanceScore.text = "SCORE: " + (int)zpos;
     }
 }
