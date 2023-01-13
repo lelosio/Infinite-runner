@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
-
+//licznik
 public class GameManager : MonoBehaviour
 {
     public int score;
