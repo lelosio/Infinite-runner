@@ -39,7 +39,7 @@ public class player : MonoBehaviour
     {
         transform.position += Vector3.forward * forwardSpeed * Time.deltaTime;
         Debug.Log(isGrounded);
-        isGrounded = Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+        isGrounded = Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.2f);
 
         if (isGrounded)
         {

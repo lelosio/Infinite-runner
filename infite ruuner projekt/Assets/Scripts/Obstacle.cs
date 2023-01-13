@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//kod na zabicie playera przez przeszkode
 
 public class Obstacle : MonoBehaviour
 {

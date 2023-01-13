@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     public void IncrementScore()
     {
         score++;
-        scoreText.text = "SCORE: " + score;
+        scoreText.text = "Coins: " + score;
     }
 
     private void Awake()
@@ -36,6 +36,6 @@ public class GameManager : MonoBehaviour
     }
     public void SetDistanceScore(float zpos)
     {
-        distanceScore.text = "SCORE: " + (int)zpos;
+        distanceScore.text = "Score: " + (int)zpos;
     }
 }

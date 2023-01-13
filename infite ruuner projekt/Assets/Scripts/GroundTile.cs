@@ -1,5 +1,5 @@
 using UnityEngine;
-
+//resp podłogi i przeszkód
 public class GroundTile : MonoBehaviour
 {
     GroundSpawner groundSpawner;
