@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 //licznik
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     public static GameManager inst;
 
     public TextMeshProUGUI scoreText, distanceScore;
+
+  //  public static event  Action OnPlayerDeath;
+
 
 
 

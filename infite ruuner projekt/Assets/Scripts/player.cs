@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class player : MonoBehaviour
 {
     bool alive =true;
+    //OnPlayerDeath?.Invoke();
     private int i;
     private int ii;
 
@@ -16,7 +17,6 @@ public class player : MonoBehaviour
     public Rigidbody rb;
     public LayerMask groundMask;
     private float distToGround;
-
     private bool isGrounded;
 
     void Start()
@@ -50,7 +50,7 @@ public class player : MonoBehaviour
     public void Update()
     {
         if (alive == false) return;
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        //if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             if (ii != 2)
             {
@@ -94,4 +94,5 @@ public class player : MonoBehaviour
         yield return new WaitForSecondsRealtime(0f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }
